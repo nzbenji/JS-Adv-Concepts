@@ -100,4 +100,93 @@ person.__proto__ //Legacy feature - Should not be used in production.
 ```
 Above shows 2 different ways to get the prototype of an object and will output methods and properties available to the object. 
 
+# ES6 Classes
+
+ES6 classes was introduced as an easier way to write object oreintated code in javascript. It is also important to note, although the class syntax may look a lot like other programming syntax's, it is not the same. Behind the scenes it is still prototype based.
+
+### ES5 prototype constructor
+```
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.greet = function() {
+    return `My name is ${this.name}. I'm ${this.age} years old`;
+}
+const instance = new Person("sam", 24);
+console.log(instance) //My name is Sam. Im 24 years old!
+```
+
+### ES6 class prototype constructor
+
+```
+class Person {
+    constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    }
+    greet() {
+         return `My name is ${this.name}. I'm ${this.age} years old`;
+     }
+}
+const instance = new Person("Sam", 24);
+console.log(instance) // My name is Sam I'm 24 years old!
+```
+
+It is important to note that everything related to the Person object, will sit inside this block. rather than having Person.prototype... as a method outside.
+Using classes makes code look much simplier and less complicated. You don't have to create new prototypes of the Person object to set a new function to it and also elimates the use of using 'call' when we wish to inherit properties from another prototype.
+
+## ES6 Inheritance 
+
+### Inheritance in ES5
+```
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+//Constructor function
+function Programmer(name, age, language) {
+    Person.call(this, name, age);
+    this.language = language;
+}
+Programmer.prototype = Object.create(Person.prototype);
+Person.prototype.constructor = Programmer;
+Programmer.prototype.greet = function() {
+    return `${Person.prototype.greet.call(this)} I code in ${this.langauge}
+}
+```
+
+Inheriting class objects can get messy, first we create a Programmer constructor which inherits and create properties from the Person prototype and call methods we wish to use from the Person prototype 
+
+### Inheritances in ES6
+```
+class Person {
+    constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    }
+    greet() {
+         return `My name is ${this.name}. I'm ${this.age} years old`;
+     }
+}
+```
+//extends inherits from the Person object
+```
+class Programmer extends Person {
+    constructor(name, age, language)
+    //super refers to the parent class which is Person
+    super(name, age);
+    this.language = language;
+}
+const Mike = new Programmer("Mike", 25, "C++");
+greet() {
+    //Super.greet() is reusing greet from its parent class
+    return `${super.greet()} I code in ${this.language});
+}
+console.log(Mike.greet()) //Output: My name is Mike, Im 25 years old, I code in C++
+```
+
+In ES6, instead of creating a seperate constructor function as shown above, we inherit the properties from the Person object using 'extends', create our constructor with the properties we wish to use and call 'super' which refers to the parent class with it's class properties.
+
 
