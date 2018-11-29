@@ -72,7 +72,7 @@ window.age = 'Mike'; //this is now set to 'window'
 
 If 'this'  is not bound to anything it will default to and refer to the window object 
 
-#Prototypes
+# Prototypes
 
 Objects are the foundation of the Javascript programming language and almost every aspect in Javascript is considered an object. Objects are key value pairs and the most common way to create an object is with curly braces {} and you can then add methods and properties to an object using the dot notation.
 ```
