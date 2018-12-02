@@ -1,3 +1,42 @@
+#Execution context
+
+## Execution Context
+Running your code requires first compling to determine what it does and if the code is valid which is translated with a set of instructions which is then implemented in a way for the computer to understand.
+The only time an execution context in created, is first when the JS engine starts interpreting your code, and when a function is invoked.
+
+## Global execution context
+
+Global execution context first creates a creation phase which consits of a global object and a this object which are both created for us. In the code we are running in the creation phase memory allocation is set up for variables which are in the beginning set to undefined and functions are set into memory as entirely.
+Once creation phase has been completed the execution phase then sets up memory space for variables and functions which is known  as hoisting. 
+```
+//example of hoisting
+//New execution context is created.    
+sayHello(); //returns "Hello" 
+console.log(hi); // returns undefined as as initially the creation phase set this value to undefined and has not reached creation phase yet.
+var hi = "Hi"
+function sayHello() {
+    console.log("Hello");
+}
+```
+
+## Function execution context
+
+The function execution context is created when a function is invoked and the execution context will run when a function is invoked by the javascript engine. Everytime a function is called/invoked it will get its own execution context. As stated earlier, the global creation phase will create:
+Global object
+A this object
+Set up memory allocation for variables and functions
+Place function declarations in memory and variable declarations to undefined.
+Function invocations don't create a global object such as in the creation phase which we don't want multiple global objects every time a function is invoke.
+Once a function has finished executing, it gets removed from the 'call stack'  once it has finished going through both the creation and execution phase. This is because Javascript is single threaded (From our perspective as programmers)
+```
+var sayHey = "Hey"
+function sayHello() {
+    console.log("Hello");
+    var myName = "Ben"
+} ```
+In this example, sayHey exists in both the global execution context as well as the sayHello() execution context because it is passed in as an argument.
+Variables declared inside a function live inside that function execution enviroment and not inside the global execution.
+
 #Javascript 'this' Keyword
 ## Implicit Binding
 ```
