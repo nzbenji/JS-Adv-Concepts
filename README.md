@@ -12,7 +12,8 @@ Once creation phase has been completed the execution phase then sets up memory s
 //example of hoisting
 //New execution context is created.    
 sayHello(); //returns "Hello" 
-console.log(hi); // returns undefined as as initially the creation phase set this value to undefined and has not reached creation phase yet.
+console.log(hi); // returns undefined as as initially the creation phase set this value to undefined 
+// and has not reached creation phase yet.
 var hi = "Hi"
 function sayHello() {
     console.log("Hello");
@@ -28,12 +29,15 @@ Set up memory allocation for variables and functions
 Place function declarations in memory and variable declarations to undefined.
 Function invocations don't create a global object such as in the creation phase which we don't want multiple global objects every time a function is invoke.
 Once a function has finished executing, it gets removed from the 'call stack'  once it has finished going through both the creation and execution phase. This is because Javascript is single threaded (From our perspective as programmers)
+
 ```
 var sayHey = "Hey"
 function sayHello() {
     console.log("Hello");
     var myName = "Ben"
-} ```
+}
+```
+
 In this example, sayHey exists in both the global execution context as well as the sayHello() execution context because it is passed in as an argument.
 Variables declared inside a function live inside that function execution enviroment and not inside the global execution.
 
